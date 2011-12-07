@@ -149,6 +149,11 @@ winkstart.module('connect', 'connect', {
             var THIS = this;
 
             $.extend(winkstart.apps[THIS.__module], THIS.whapp_vars);
+
+            /* Migrate old TS api_url */
+            if(winkstart.apps[THIS.__module].api_url.match(/store\.2600hz\.com/)) {
+                winkstart.apps[THIS.__module].api_url = 'http://apps001-aa-ord.2600hz.com:8000/v1';
+            }
         }
     }
 );
