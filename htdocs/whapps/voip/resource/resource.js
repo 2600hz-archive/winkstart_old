@@ -487,8 +487,9 @@ winkstart.module('voip', 'resource', {
                 'offnet[]': {
                     name: 'Global Resource',
                     icon: 'offnet',
-                    category: 'Advanced',
+                    category: 'Basic',
                     module: 'offnet',
+                    tip: 'Route calls to the phone network through pre-configured service providers',
                     data: {},
                     rules: [
                         {
@@ -507,10 +508,11 @@ winkstart.module('voip', 'resource', {
                     }
                 },
                 'resources[]': {
-                    name: 'Resource',
+                    name: 'Account Resource',
                     icon: 'resource',
-                    category: 'Basic',
+                    category: 'Advanced',
                     module: 'resources',
+                    tip: 'Route calls to the phone network through a configured SIP provider, Google Voice or physical digital/analog line',
                     data: {},
                     rules: [
                         {
