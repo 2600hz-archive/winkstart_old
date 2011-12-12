@@ -6,7 +6,7 @@ winkstart.module('voip', 'user', {
         templates: {
             user: 'tmpl/user.html',
             edit: 'tmpl/edit.html',
-            hotdesk_callflow: 'tmpl/hotdesk_callflow.html'
+            user_callflow: 'tmpl/user_callflow.html'
         },
 
         subscribe: {
@@ -154,37 +154,52 @@ winkstart.module('voip', 'user', {
                             internal: {},
                             external: {}
                         },
-                        hotdesk: {}
+                        hotdesk: {},
+                        music_on_hold: {}
                     }, data_defaults || {}),
                     field_data: {}
                 };
 
-            if(typeof data == 'object' && data.id) {
-                winkstart.request(true, 'user.get', {
-                        account_id: winkstart.apps['voip'].account_id,
-                        api_url: winkstart.apps['voip'].api_url,
-                        user_id: data.id
-                    },
-                    function(_data, status) {
-                        THIS.migrate_data(_data);
+            winkstart.request(true, 'media.list', {
+                    account_id: winkstart.apps['voip'].account_id,
+                    api_url: winkstart.apps['voip'].api_url
+                },
+                function(_data, status) {
+                    _data.data.unshift({
+                        id: '',
+                        name: '- Not set -'
+                    });
 
-                        THIS.format_data(_data);
+                    defaults.field_data.media = _data.data;
 
-                        THIS.render_user($.extend(true, defaults, _data), target, callbacks);
+                    if(typeof data == 'object' && data.id) {
+                        winkstart.request(true, 'user.get', {
+                                account_id: winkstart.apps['voip'].account_id,
+                                api_url: winkstart.apps['voip'].api_url,
+                                user_id: data.id
+                            },
+                            function(_data, status) {
+                                THIS.migrate_data(_data);
+
+                                THIS.format_data(_data);
+
+                                THIS.render_user($.extend(true, defaults, _data), target, callbacks);
+
+                                if(typeof callbacks.after_render == 'function') {
+                                    callbacks.after_render();
+                                }
+                            }
+                        );
+                    }
+                    else {
+                        THIS.render_user(defaults, target, callbacks);
 
                         if(typeof callbacks.after_render == 'function') {
                             callbacks.after_render();
                         }
                     }
-                );
-            }
-            else {
-                THIS.render_user(defaults, target, callbacks);
-
-                if(typeof callbacks.after_render == 'function') {
-                    callbacks.after_render();
                 }
-            }
+            );
         },
 
         delete_user: function(data, success, error) {
@@ -291,6 +306,42 @@ winkstart.module('voip', 'user', {
                 THIS.delete_user(data, callbacks.delete_success, callbacks.delete_error);
             });
 
+            if(!$('#music_on_hold_media_id', user_html).val()) {
+                $('#edit_link_media', user_html).hide();
+            }
+
+            $('#music_on_hold_media_id', user_html).change(function() {
+                !$('#music_on_hold_media_id option:selected', user_html).val() ? $('#edit_link_media', user_html).hide() : $('#edit_link_media', user_html).show();
+            });
+
+            $('.inline_action_media', user_html).click(function(ev) {
+                var _data = ($(this).dataset('action') == 'edit') ? { id: $('#music_on_hold_media_id', user_html).val() } : {},
+                    _id = _data.id;
+
+                ev.preventDefault();
+
+                winkstart.publish('media.popup_edit', _data, function(_data) {
+                    /* Create */
+                    if(!_id) {
+                        $('#music_on_hold_media_id', user_html).append('<option id="'+ _data.data.id  +'" value="'+ _data.data.id +'">'+ _data.data.name +'</option>')
+                        $('#music_on_hold_media_id', user_html).val(_data.data.id);
+
+                        $('#edit_link_media', user_html).show();
+                    }
+                    else {
+                        /* Update */
+                        if('id' in _data.data) {
+                            $('#music_on_hold_media_id #'+_data.data.id, user_html).text(_data.data.name);
+                        }
+                        /* Delete */
+                        else {
+                            $('#music_on_hold_media_id #'+_id, user_html).remove();
+                            $('#edit_link_media', user_html).hide();
+                        }
+                    }
+                });
+            });
+
             (target)
                 .empty()
                 .append(user_html);
@@ -322,7 +373,6 @@ winkstart.module('voip', 'user', {
             if(!form_data.hotdesk.require_pin) {
                 delete form_data.hotdesk.pin;
             }
-
 
             if(form_data.pwd_mngt_pwd1 != 'fakePassword') {
                 form_data.password = form_data.pwd_mngt_pwd1;
@@ -357,6 +407,10 @@ winkstart.module('voip', 'user', {
 
             if(!data.call_forward.enabled) {
                 delete data.call_forward;
+            }
+
+            if(!data.music_on_hold.media_id) {
+                delete data.music_on_hold.media_id;
             }
 
             /* Yes, I am aware that the admin does not lose access to the userportal (if switched) */
@@ -474,13 +528,13 @@ winkstart.module('voip', 'user', {
             var THIS = this;
 
             $.extend(callflow_nodes, {
-                 'hotdesk[id=*,action=bridge]': {
-                    name: 'Hot Desking',
-                    icon: 'v_phone',
-                    category: 'Hotdesking',
-                    module: 'hotdesk',
+                 'user[id=*]': {
+                    name: 'User',
+                    icon: 'user',
+                    category: 'Basic',
+                    module: 'user',
+                    tip: 'Direct a caller to a specific user',
                     data: {
-                        action: 'bridge',
                         id: 'null'
                     },
                     rules: [
@@ -491,12 +545,13 @@ winkstart.module('voip', 'user', {
                     ],
                     isUsable: 'true',
                     caption: function(node, caption_map) {
-                        var name = node.getMetadata('name');
-
-                        return (name) ? name : '';
+                        /*var name = node.getMetadata('name');
+                        return (name) ? name : '';*/
+                        var id = node.getMetadata('id');
+                        return (id && id != '') ? caption_map[id].name : '';
                     },
                     edit: function(node, callback) {
-                        winkstart.request(true, 'hotdesk.list', {
+                        winkstart.request(true, 'user.list', {
                                 account_id: winkstart.apps['voip'].account_id,
                                 api_url: winkstart.apps['voip'].api_url
                             },
@@ -507,22 +562,43 @@ winkstart.module('voip', 'user', {
                                     this.name = this.first_name + ' ' + this.last_name;
                                 });
 
-                                popup_html = THIS.templates.hotdesk_callflow.tmpl({
+                                popup_html = THIS.templates.user_callflow.tmpl({
                                     items: data.data,
                                     selected: node.getMetadata('id') || ''
                                 });
 
+                                if($('#user_selector option:selected', popup_html).val() == undefined) {
+                                    $('#edit_link', popup_html).hide();
+                                }
+
+                                $('.inline_action', popup_html).click(function(ev) {
+                                    var _data = ($(this).dataset('action') == 'edit') ?
+                                                    { id: $('#user_selector', popup_html).val() } : {};
+
+                                    ev.preventDefault();
+
+                                    winkstart.publish('user.popup_edit', _data, function(_data) {
+                                        node.setMetadata('id', _data.data.id || 'null');
+
+                                        node.caption = (_data.data.first_name || '') + ' ' + (_data.data.last_name || '');
+                                        //node.setMetadata('name', name);
+
+                                        popup.dialog('close');
+                                    });
+                                });
+
                                 $('.submit_btn', popup_html).click(function() {
-                                    node.setMetadata('id', $('#hotdesk_selector', popup_html).val());
-                                    node.setMetadata('name', $('#hotdesk_selector option:selected', popup_html).text());
-
-                                    node.caption = $('#hotdesk_selector option:selected', popup_html).text();
-
+                                    node.setMetadata('id', $('#user_selector', popup_html).val());
+                                    /*console.log(node);
+                                    console.log($('#user_selector option:selected', popup_html).text());
+                                    node.setMetadata('name', $('#user_selector option:selected', popup_html).text());
+                                    console.log(node);*/
+                                    node.caption = $('#user_selector option:selected', popup_html).text();
                                     popup.dialog('close');
                                 });
 
                                 popup = winkstart.dialog(popup_html, {
-                                    title: 'Select Hot Desking User',
+                                    title: 'Select User',
                                     beforeClose: function() {
                                         if(typeof callback == 'function') {
                                             callback();
@@ -538,6 +614,7 @@ winkstart.module('voip', 'user', {
                     icon: 'hotdesk_login',
                     category: 'Hotdesking',
                     module: 'hotdesk',
+                    tip: 'Enable Hot desking',
                     data: {
                         action: 'login'
                     },
@@ -562,6 +639,7 @@ winkstart.module('voip', 'user', {
                     icon: 'hotdesk_logout',
                     category: 'Hotdesking',
                     module: 'hotdesk',
+                    tip: 'Disable Hot desking',
                     data: {
                         action: 'logout'
                     },
@@ -586,6 +664,7 @@ winkstart.module('voip', 'user', {
                     icon: 'hotdesk_toggle',
                     category: 'Hotdesking',
                     module: 'hotdesk',
+                    tip: 'Toggle Hot desking',
                     data: {
                         action: 'toggle'
                     },
