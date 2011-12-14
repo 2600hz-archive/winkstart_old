@@ -415,7 +415,7 @@ winkstart.module('voip', 'callflow', {
                                 title: 'Add number'
                         });
 
-                        $('.submit_btn', popup).click(function(event) {
+                        $('button.add_number', popup).click(function(event) {
                             event.preventDefault();
                             THIS.flow.numbers.push($('#add_number_text', popup).val());
 
