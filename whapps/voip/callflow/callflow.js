@@ -415,9 +415,24 @@ winkstart.module('voip', 'callflow', {
                                 title: 'Add number'
                         });
 
+                        $('#add_number_text', popup).blur();
+
                         $('button.add_number', popup).click(function(event) {
                             event.preventDefault();
-                            THIS.flow.numbers.push($('#add_number_text', popup).val());
+                            var number = $('#add_number_text', popup).val();
+                            if(number == '' && !confirm('Are you sure that you want to add an empty number?')) {
+                                return;
+                            }
+                            THIS.flow.numbers.push(number);
+
+                            popup.dialog('close');
+
+                            THIS.renderFlow();
+                        });
+
+                        $('#create_no_match', popup).click(function(event) {
+                            event.preventDefault();
+                            THIS.flow.numbers.push('no_match');
 
                             popup.dialog('close');
 
@@ -545,7 +560,7 @@ winkstart.module('voip', 'callflow', {
                 });
             });
 
-            $('.delete', layout).click(function() {
+            $('.node-options .delete', layout).click(function() {
                 var node = THIS.flow.nodes[$(this).attr('id')];
 
                 if (node.parent) {
@@ -672,6 +687,7 @@ winkstart.module('voip', 'callflow', {
             $('*[tooltip]', target).each(function() {
                 $(this).tooltip({ xMove: -80, yMove: -80, height: '40px', width: '100px' });
             });
+
         },
 
         _enableDestinations: function(el) {
@@ -763,6 +779,12 @@ winkstart.module('voip', 'callflow', {
 
                         if(crossbar_data.length > 0) {
                             _.each(crossbar_data, function(elem){
+                                if(elem.numbers) {
+                                    for(var i = 0; i < elem.numbers.length; i++) {
+                                        elem.numbers[i] = elem.numbers[i].replace(/^$/, '(no number)');
+                                        elem.numbers[i] = elem.numbers[i].replace(/^no_match$/, 'Catch all');
+                                    }
+                                }
                                 if(elem.featurecode == false) {
                                     new_list.push({
                                         id: elem.id,
