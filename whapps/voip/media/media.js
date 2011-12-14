@@ -258,6 +258,12 @@ winkstart.module('voip', 'media', {
                 $('#player_file', media_html).hide();
             });
 
+            $('#download_link', media_html).click(function() {
+                window.location.href = winkstart.apps['voip'].api_url + '/accounts/' +
+                                       winkstart.apps['voip'].account_id + '/media/' +
+                                       data.data.id + '/raw?auth_token=' + winkstart.apps['voip'].auth_token;
+            });
+
             $('.media-save', media_html).click(function(ev) {
                 ev.preventDefault();
 
