@@ -99,6 +99,7 @@ winkstart.module('auth', 'onboarding', {
                             }
                         }
                         $('#picked_number', onboard_html).html(number);
+                        $('#change_number', onboard_html).val('I don\'t like this number!');
                         $('#picked_number_li', onboard_html).show();
                         $('#extensions_block', onboard_html).show();
                     },
