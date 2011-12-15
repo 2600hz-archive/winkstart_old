@@ -1,199 +1,85 @@
 <div>
-    <div class="popup popup_login" >
-            <form id="fast_onboarding_form" style="max-width:380px; max-height:400px; overflow:hidden;" name="form">
-            <fieldset>
-                <legend>Pick a Number</legend>
-                <hr/>
-                <ul class="controls">
-                    <li>
-                        <label>Area Code</label>
-                        <input type="text" name="area_code" id="area_code"/>
-                    </li>
-                    <li id="picked_number_li" class="center">
-                        <span id="picked_number" class="center picked_number"></span>
-                    </li>
-                    <li class="center">
-                        <input type="button" name="change_number" id="change_number" value="Give me a number!"/>
-                    </li>
-                </ul>
-                <ul id="extensions_block" class="controls">
-                    <li id="li_number_for">
-                        <label>Is this number for: </label>
-                        <input type="radio" name="group1" value="single_phone" checked="checked">&nbsp;&nbsp;a single phone?</input>
-                        <br/>
-                        <input type="radio" name="group1" value="small_office">&nbsp;&nbsp;a small office?</input>
-                    </li>
-                    <li id="li_list_number">
+    <div id="onboarding-view">
+        <div class="form_wrapper">
+            <div class="onboarding_title">
+                <span class="onboarding_title_text">You will be setup in 4 steps!</span>
+            </div>
+            <form id="fast_onboarding_form" name="form">
+                <fieldset>
+                    <legend>Pick a Number</legend>
+                    <hr/>
+                    <ul class="controls">
+                        <li>
+                            <label>Area Code</label>
+                            <input type="text" name="area_code" id="area_code"/>
+                        </li>
+                        <li id="picked_number_li" class="center">
+                            <span id="picked_number" class="center picked_number"></span>
+                        </li>
+                        <li class="center">
+                            <input type="button" name="change_number" id="change_number" value="Give me a number!"/>
+                        </li>
+                    </ul>
+                    <ul id="extensions_block" class="controls">
+                        <li id="li_number_for">
+                            <label>Is this number for: </label>
+                            <input type="radio" name="group1" value="single_phone" checked="checked">&nbsp;&nbsp;a single phone?</input>
+                            <br/>
+                            <input type="radio" name="group1" value="small_office">&nbsp;&nbsp;a small office?</input>
+                        </li>
+                        <li id="li_list_number">
+                            <div class="help_text">
+                                Configure your first 5 users easily, by setting their name and their extension number!
+                            </div>
+                            <div class="user_tab">
+                                <div class="title_bar">
+                                    <div class="second column">First Name</div>
+                                    <div class="third column">Last Name</div>
+                                    <div class="fourth column">Ext. #</div>
+                                </div>
+                                <div class="first_row">
+                                    <div class="second column"><input class="first_name_input" type="text" id="first_name_1"/></div>
+                                    <div class="third column"><input class="last_name_input" type="text" id="last_name_1"/></div>
+                                    <div class="fourth column"><input class="extension_input" type="text" id="extension_1"/></div>
+                                </div>
+                                <div class="second_row">
+                                    <div class="second column"><input class="first_name_input" type="text" id="first_name_2"/></div>
+                                    <div class="third column"><input class="last_name_input" type="text" id="last_name_2"/></div>
+                                    <div class="fourth column"><input class="extension_input" type="text" id="extension_2"/></div>
+                                </div>
+                                <div class="third_row">
+                                    <div class="second column"><input class="first_name_input" type="text" id="first_name_3"/></div>
+                                    <div class="third column"><input class="last_name_input" type="text" id="last_name_3"/></div>
+                                    <div class="fourth column"><input class="extension_input" type="text" id="extension_3"/></div>
+                                </div>
+                                <div class="fourth_row">
+                                    <div class="second column"><input class="first_name_input" type="text" id="first_name_4"/></div>
+                                    <div class="third column"><input class="last_name_input" type="text" id="last_name_4"/></div>
+                                    <div class="fourth column"><input class="extension_input" type="text" id="extension_4"/></div>
+                                </div>
+                                <div class="fifth_row">
+                                    <div class="second column"><input class="first_name_input" type="text" id="first_name_5"/></div>
+                                    <div class="third column"><input class="last_name_input" type="text" id="last_name_5"/></div>
+                                    <div class="fourth column"><input class="extension_input" type="text" id="extension_5"/></div>
+                                </div>
+                            </div>
+                            <div class="help_text">
+                                You will be able to configure more users once this setup is complete.
+                            </div>
+                        </li>
+                    </ul>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Address Info</legend>
+                    <hr/>
+                    <ul class="controls">
                         <div class="help_text">
-                            Configure your first 5 users easily, by setting their name and their extension number!
+                            This will be used as your e911 information.
                         </div>
-                        <div class="user_tab">
-                            <div class="title_bar">
-                                <div class="second column">First Name</div>
-                                <div class="third column">Last Name</div>
-                                <div class="fourth column">Ext. #</div>
-                            </div>
-                            <div class="first_row">
-                                <div class="second column"><input class="first_name_input" type="text" id="first_name_1"/></div>
-                                <div class="third column"><input class="last_name_input" type="text" id="last_name_1"/></div>
-                                <div class="fourth column"><input class="extension_input" type="text" id="extension_1"/></div>
-                            </div>
-                            <div class="second_row">
-                                <div class="second column"><input class="first_name_input" type="text" id="first_name_2"/></div>
-                                <div class="third column"><input class="last_name_input" type="text" id="last_name_2"/></div>
-                                <div class="fourth column"><input class="extension_input" type="text" id="extension_2"/></div>
-                            </div>
-                            <div class="third_row">
-                                <div class="second column"><input class="first_name_input" type="text" id="first_name_3"/></div>
-                                <div class="third column"><input class="last_name_input" type="text" id="last_name_3"/></div>
-                                <div class="fourth column"><input class="extension_input" type="text" id="extension_3"/></div>
-                            </div>
-                            <div class="fourth_row">
-                                <div class="second column"><input class="first_name_input" type="text" id="first_name_4"/></div>
-                                <div class="third column"><input class="last_name_input" type="text" id="last_name_4"/></div>
-                                <div class="fourth column"><input class="extension_input" type="text" id="extension_4"/></div>
-                            </div>
-                            <div class="fifth_row">
-                                <div class="second column"><input class="first_name_input" type="text" id="first_name_5"/></div>
-                                <div class="third column"><input class="last_name_input" type="text" id="last_name_5"/></div>
-                                <div class="fourth column"><input class="extension_input" type="text" id="extension_5"/></div>
-                            </div>
-                        </div>
-                        <div class="help_text">
-                            You will be able to configure more users once this setup is complete.
-                        </div>
-                    </li>
-                </ul>
-            </fieldset>
-
-            <fieldset>
-                <legend tooltip="This will be used for your e911 information">Address Info</legend>
-                <hr/>
-                <ul class="controls">
-                    <p>
-                        This will be used as your e911 information.
-                    </p>
-                    <li>
-                        <label>Pick your country</label>
-                        <select name="e911_country" id="e911_country">
-                            <option value="Other">Other country...</option>
-                            <option value="AD"> Andorra</option>
-                            <option value="AR"> Argentina</option>
-                            <option value="AU"> Australia</option>
-                            <option value="AT"> Austria</option>
-                            <option value="BD"> Bangladesh</option>
-                            <option value="BE"> Belgium</option>
-                            <option value="BR"> Brazil</option>
-                            <option value="BG"> Bulgaria</option>
-                            <option value="CA"> Canada</option>
-                            <option value="HR"> Croatia</option>
-                            <option value="CZ"> Czech Republic</option>
-                            <option value="DK"> Denmark</option>
-                            <option value="DO"> Dominican Republic</option>
-                            <option value="FO"> Faroe Islands</option>
-                            <option value="FI"> Finland</option>
-                            <option value="FR"> France</option>
-                            <option value="GF"> French Guiana</option>
-                            <option value="DE"> Germany</option>
-                            <option value="GL"> Greenland</option>
-                            <option value="GP"> Guadeloupe</option>
-                            <option value="GT"> Guatemala</option>
-                            <option value="HU"> Hungary</option>
-                            <option value="IS"> Iceland</option>
-                            <option value="IN"> India</option>
-                            <option value="IT"> Italy</option>
-                            <option value="JP"> Japan</option>
-                            <option value="LI"> Liechtenstein</option>
-                            <option value="LT"> Lithuania</option>
-                            <option value="LU"> Luxembourg</option>
-                            <option value="MK"> Macedonia</option>
-                            <option value="MY"> Malaysia</option>
-                            <option value="MQ"> Martinique</option>
-                            <option value="YT"> Mayotte</option>
-                            <option value="MX"> Mexico</option>
-                            <option value="MD"> Moldova</option>
-                            <option value="MC"> Monaco</option>
-                            <option value="NL"> Netherlands</option>
-                            <option value="NZ"> New Zealand</option>
-                            <option value="NO"> Norway</option>
-                            <option value="PK"> Pakistan</option>
-                            <option value="PH"> Philippines</option>
-                            <option value="PL"> Poland</option>
-                            <option value="PT"> Portugal</option>
-                            <option value="RU"> Russia</option>
-                            <option value="RE"> Réion</option>
-                            <option value="PM"> Saint Pierre and Miquelon</option>
-                            <option value="SM"> San Marino</option>
-                            <option value="SK"> Slovakia</option>
-                            <option value="SI"> Slovenia</option>
-                            <option value="ZA"> South Africa</option>
-                            <option value="ES"> Spain</option>
-                            <option value="LK"> Sri Lanka</option>
-                            <option value="SE"> Sweden</option>
-                            <option value="CH"> Switzerland</option>
-                            <option value="TH"> Thailand</option>
-                            <option value="TR"> Turkey</option>
-                            <option value="GB"> United Kingdom</option>
-                            <option value="US" selected="selected"> United States</option>
-                            <option value="VA"> Vatican City</option>
-                            <option value="WF"> Wallis and Futuna</option>
-                        </select>
-                    </li>
-                    <li id="e911_country_block">
-                        <label>Country</label>
-                        <input type="text" name="e911_country_text" id="e911_country_text" />
-                    </li>
-                    <li>
-                        <label>Postal Code</label>
-                        <input type="text" name="e911_postal_code" id="e911_postal_code"/>
-                    </li>
-                    <li>
-                        <label>Address</label>
-                        <input type="text" name="e911_address" id="e911_address"/>
-                    </li>
-                    <li>
-                        <label>State</label>
-                        <input type="text" name="e911_state" id="e911_state" />
-                    </li>
-
-                    <li>
-                        <label>City</label>
-                        <input type="text" name="e911_city" id="e911_city" class="field_last"/>
-                    </li>
-                </ul>
-            </fieldset>
-
-            <fieldset>
-                <legend>Credit Card</legend>
-                <hr/>
-                <ul class="controls">
-                    <li>
-                        <label>First Name</label>
-                        <input type="text" name="first_name" id="first_name"/>
-                    </li>
-
-                    <li>
-                        <label>Last Name</label>
-                        <input type="text" name="last_name" id="last_name"/>
-                    </li>
-
-                    <li>
-                        <label>Card Number</label>
-                        <input type="text" name="card_number" id="card_number" />
-                    </li>
-
-                    <li>
-                        <label>Use 911 Address?</label>
-                        <input type="checkbox" name="use_e911" id="use_e911" checked="checked" />
-                    </li>
-                    <li id="e911_address_block">
-                        <label>e911 Address</label>
-                        <label id="e911_address_text"></label>
-                    </li>
-                    <div id="address_infos">
                         <li>
                             <label>Pick your country</label>
-                            <select name="country" id="country">
+                            <select name="e911_country" id="e911_country">
                                 <option value="Other">Other country...</option>
                                 <option value="AD"> Andorra</option>
                                 <option value="AR"> Argentina</option>
@@ -240,7 +126,6 @@
                                 <option value="PT"> Portugal</option>
                                 <option value="RU"> Russia</option>
                                 <option value="RE"> Réion</option>
-                                <option value="PM"> Saint Pierre and Miquelon</option>
                                 <option value="SM"> San Marino</option>
                                 <option value="SK"> Slovakia</option>
                                 <option value="SI"> Slovenia</option>
@@ -257,57 +142,175 @@
                                 <option value="WF"> Wallis and Futuna</option>
                             </select>
                         </li>
-                        <li id="billing_country_text">
+                        <li id="e911_country_block">
                             <label>Country</label>
-                            <input type="text" name="country" id="country" />
+                            <input type="text" name="e911_country_text" id="e911_country_text" />
                         </li>
                         <li>
                             <label>Postal Code</label>
-                            <input type="text" name="postal_code" id="postal_code" class="field_last" />
+                            <input type="text" name="e911_postal_code" id="e911_postal_code"/>
                         </li>
                         <li>
                             <label>Address</label>
-                            <input type="text" name="address" id="address" value=""/>
+                            <input type="text" name="e911_address" id="e911_address"/>
                         </li>
                         <li>
                             <label>State</label>
-                            <input type="text" name="state" id="state" />
+                            <input type="text" name="e911_state" id="e911_state" />
                         </li>
 
                         <li>
                             <label>City</label>
-                            <input type="text" name="city" id="city"/>
+                            <input type="text" name="e911_city" id="e911_city" class="field_last"/>
                         </li>
-                    </div>
-                </ul>
-            </fieldset>
+                    </ul>
+                </fieldset>
 
-            <fieldset>
-                <legend>Credentials</legend>
-                <hr/>
-                <ul class="controls">
-                    <li>
-                        <label>Username</label>
-                        <input type="text" name="login" id="login" value="${username}"/>
-                    </li>
+                <fieldset>
+                    <legend>Credit Card</legend>
+                    <hr/>
+                    <ul class="controls">
+                        <li>
+                            <label>First Name</label>
+                            <input type="text" name="first_name" id="first_name"/>
+                        </li>
 
-                    <li>
-                        <label>Password</label>
-                        <input type="password" name="password" id="password" />
-                    </li>
+                        <li>
+                            <label>Last Name</label>
+                            <input type="text" name="last_name" id="last_name"/>
+                        </li>
 
-                    <li>
-                        <label>Company name</label>
-                        <input type="text" name="company_name" id="company_name" />
-                    </li>
-                </ul>
-            </fieldset>
+                        <li>
+                            <label>Card Number</label>
+                            <input type="text" name="card_number" id="card_number" />
+                        </li>
 
-            <div class="clear"/>
-            <br/>
-            <div class="center">
-                <input id="save_account" type="button" value="Finish Setup" />
-            </div>
-        </form>
+                        <li>
+                            <label>Use 911 Address?</label>
+                            <input type="checkbox" name="use_e911" id="use_e911" checked="checked" />
+                        </li>
+                        <li id="e911_address_block">
+                            <label>e911 Address</label>
+                            <label id="e911_address_text"></label>
+                        </li>
+                        <div id="address_infos">
+                            <li>
+                                <label>Pick your country</label>
+                                <select name="country" id="country">
+                                    <option value="Other">Other country...</option>
+                                    <option value="AD"> Andorra</option>
+                                    <option value="AR"> Argentina</option>
+                                    <option value="AU"> Australia</option>
+                                    <option value="AT"> Austria</option>
+                                    <option value="BD"> Bangladesh</option>
+                                    <option value="BE"> Belgium</option>
+                                    <option value="BR"> Brazil</option>
+                                    <option value="BG"> Bulgaria</option>
+                                    <option value="CA"> Canada</option>
+                                    <option value="HR"> Croatia</option>
+                                    <option value="CZ"> Czech Republic</option>
+                                    <option value="DK"> Denmark</option>
+                                    <option value="DO"> Dominican Republic</option>
+                                    <option value="FO"> Faroe Islands</option>
+                                    <option value="FI"> Finland</option>
+                                    <option value="FR"> France</option>
+                                    <option value="GF"> French Guiana</option>
+                                    <option value="DE"> Germany</option>
+                                    <option value="GL"> Greenland</option>
+                                    <option value="GP"> Guadeloupe</option>
+                                    <option value="GT"> Guatemala</option>
+                                    <option value="HU"> Hungary</option>
+                                    <option value="IS"> Iceland</option>
+                                    <option value="IN"> India</option>
+                                    <option value="IT"> Italy</option>
+                                    <option value="JP"> Japan</option>
+                                    <option value="LI"> Liechtenstein</option>
+                                    <option value="LT"> Lithuania</option>
+                                    <option value="LU"> Luxembourg</option>
+                                    <option value="MK"> Macedonia</option>
+                                    <option value="MY"> Malaysia</option>
+                                    <option value="MQ"> Martinique</option>
+                                    <option value="YT"> Mayotte</option>
+                                    <option value="MX"> Mexico</option>
+                                    <option value="MD"> Moldova</option>
+                                    <option value="MC"> Monaco</option>
+                                    <option value="NL"> Netherlands</option>
+                                    <option value="NZ"> New Zealand</option>
+                                    <option value="NO"> Norway</option>
+                                    <option value="PK"> Pakistan</option>
+                                    <option value="PH"> Philippines</option>
+                                    <option value="PL"> Poland</option>
+                                    <option value="PT"> Portugal</option>
+                                    <option value="RU"> Russia</option>
+                                    <option value="RE"> Réion</option>
+                                    <option value="SM"> San Marino</option>
+                                    <option value="SK"> Slovakia</option>
+                                    <option value="SI"> Slovenia</option>
+                                    <option value="ZA"> South Africa</option>
+                                    <option value="ES"> Spain</option>
+                                    <option value="LK"> Sri Lanka</option>
+                                    <option value="SE"> Sweden</option>
+                                    <option value="CH"> Switzerland</option>
+                                    <option value="TH"> Thailand</option>
+                                    <option value="TR"> Turkey</option>
+                                    <option value="GB"> United Kingdom</option>
+                                    <option value="US" selected="selected"> United States</option>
+                                    <option value="VA"> Vatican City</option>
+                                    <option value="WF"> Wallis and Futuna</option>
+                                </select>
+                            </li>
+                            <li id="billing_country_text">
+                                <label>Country</label>
+                                <input type="text" name="country" id="country" />
+                            </li>
+                            <li>
+                                <label>Postal Code</label>
+                                <input type="text" name="postal_code" id="postal_code" class="field_last" />
+                            </li>
+                            <li>
+                                <label>Address</label>
+                                <input type="text" name="address" id="address" value=""/>
+                            </li>
+                            <li>
+                                <label>State</label>
+                                <input type="text" name="state" id="state" />
+                            </li>
+
+                            <li>
+                                <label>City</label>
+                                <input type="text" name="city" id="city"/>
+                            </li>
+                        </div>
+                    </ul>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Credentials</legend>
+                    <hr/>
+                    <ul class="controls">
+                        <li>
+                            <label>Username</label>
+                            <input type="text" name="login" id="login" value="${username}"/>
+                        </li>
+
+                        <li>
+                            <label>Password</label>
+                            <input type="password" name="password" id="password" />
+                        </li>
+
+                        <li>
+                            <label>Company name</label>
+                            <input type="text" name="company_name" id="company_name" />
+                        </li>
+                    </ul>
+                </fieldset>
+
+                <div class="clear"/>
+                <br/>
+                <div class="center">
+                    <input id="save_account" type="button" value="Finish Setup" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>

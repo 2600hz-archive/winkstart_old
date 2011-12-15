@@ -1,44 +1,83 @@
 /* to improve probably */
-input[type=text] {
-    width:150px;
+/*#onboarding-view input[type=text] {
+    width: 150px;
 }
 
-input[type=password] {
-    width:150px;
+#onboarding-view input[type=password] {
+    width: 150px;
 }
 
-select {
-    max-width:150px;
+#onboarding-view select {
+    max-width: 150px;
+}
+*/
+#onboarding-view {
+    text-align: center;
 }
 
-.ui-dialog { margin:0 auto; }
+#onboarding-view .form_wrapper {
+    background-color: #6C6C6C;
+    border: 1px solid #363636;
+    display: inline-block;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: left;
+    width: 390px;
+}
 
-#steps {
+#onboarding-view .onboarding_title {
+    background-image: url("img/onboarding_title_bg.jpg");
+    background-position: center center;
+    background-repeat: repeat-x;
+    height: 36px;
+    text-align: center;
+}
+
+#onboarding-view .onboarding_title_text {
+    color: #05ADDC;
+    font-size: 22px;
+    line-height: 36px;
+    text-shadow: 1px 1px #000000;
+}
+
+#onboarding-view #steps {
     list-style: none;
     width: 100%;
     overflow: hidden;
     margin-bottom: 20px;
     padding: 0px;
+    border-bottom: 1px solid #363636;
 }
 
-#steps li {
+#onboarding-view #steps li {
     font-size: 24px;
     float: left;
-    padding: 10px;
-    color: #b0b1b3;
+    padding: 14px;
+    color: #ffffff;
+    text-shadow: 1px 1px #000000;
 }
 
-#steps li span {
+#onboarding-view #steps li span {
     font-size: 11px;
     display: block;
 }
 
-#steps li.current {
+#onboarding-view #steps li.current {
     color: #05addc;
 }
 
-#steps li:focus {
+#onboarding-view #steps li:focus {
     color: #05addc;
+}
+
+#fast_onboarding_form {
+    padding-bottom: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#fast_onboarding_form ul.controls li:first-child {
+    border-top: 0;
 }
 
 #fast_onboarding_form .prev, .next {
@@ -73,6 +112,7 @@ select {
     font-size: 24px;
     padding: 10px;
     color: #05addc;
+    text-shadow: 1px 1px #000;
 }
 
 #fast_onboarding_form .user_tab {
@@ -115,7 +155,12 @@ select {
 }
 
 #fast_onboarding_form .help_text {
+    background-color: #999999;
+    border: 1px solid #363636;
+    font-style: italic;
+    margin-bottom: 10px;
     padding: 10px;
+    padding-bottom: 10px;
     text-align: center;
 }
 

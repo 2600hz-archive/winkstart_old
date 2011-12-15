@@ -72,16 +72,10 @@ winkstart.module('auth', 'onboarding', {
             winkstart.validate.set(THIS.config.validation['step2'], onboard_html);
             winkstart.validate.set(THIS.config.validation['step3'], onboard_html);
 
-            var dialog_onboard = winkstart.dialog(onboard_html, {
-                title: 'You will be setup in 4 steps!',
-                open: function() {
-                    $('#fast_onboarding_form', onboard_html).formToWizard({ submitButton: 'save_account' });
-                    $('#fast_onboarding_form', onboard_html).css('width','380px')
-                                                            .css('max-height','400px')
-                                                            .css('max-width','380px')
-                                                            .css('overflow','auto');
-                }
-            });
+            $('#ws-content').empty()
+                            .append(onboard_html);
+
+            $('#fast_onboarding_form', onboard_html).formToWizard({ submitButton: 'save_account' });
 
             $('#picked_number_li', onboard_html).hide();
             $('#extensions_block', onboard_html).hide();
