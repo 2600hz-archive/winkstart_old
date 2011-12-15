@@ -11,7 +11,7 @@
                     <ul class="controls">
                         <li>
                             <label>Area Code</label>
-                            <input type="text" name="area_code" id="area_code"/>
+                            <input type="text" name="area_code" id="area_code" maxlength="3" size="3"/>
                         </li>
                         <li id="picked_number_li" class="center">
                             <span id="picked_number" class="center picked_number"></span>
@@ -183,6 +183,50 @@
                         <li>
                             <label>Card Number</label>
                             <input type="text" name="card_number" id="card_number" />
+                        </li>
+
+                        <li>
+                            <label>CVV</label>
+                            <input type="text" name="cvv" id="cvv" size="3" maxlength="3"/>
+                        </li>
+
+                        <li>
+                            <label>Expiration Date</label>
+                            <select name="expiration_month" id="expiration_month">
+                                <option value="01">01 - January</option>
+                                <option value="02">02 - February</option>
+                                <option value="03">03 - March</option>
+                                <option value="04">04 - April</option>
+                                <option value="05">05 - May</option>
+                                <option value="06">06 - June</option>
+                                <option value="07">07 - July</option>
+                                <option value="08">08 - August</option>
+                                <option value="09">09 - September</option>
+                                <option value="10">10 - October</option>
+                                <option value="11">11 - November</option>
+                                <option value="12">12 - December</option>
+                            </select>
+                            <select name="expiration_year" id="expiration_year">
+                                <option value="2011">2011</option>
+                                <option value="2012">2012</option>
+                                <option value="2013">2013</option>
+                                <option value="2014">2014</option>
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
+                            </select>
                         </li>
 
                         <li>
