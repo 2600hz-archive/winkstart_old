@@ -95,6 +95,11 @@ winkstart.module('auth', 'auth',
             this.init();
             winkstart.log('Core: Loaded My Account manager');
         });
+
+        winkstart.module.loadModule('auth', 'onboarding', function() {
+            this.init();
+            winkstart.log('Core: Loaded Onboarding');
+        });
     },
 
     {

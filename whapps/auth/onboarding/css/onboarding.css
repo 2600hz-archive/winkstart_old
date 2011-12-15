@@ -1,0 +1,130 @@
+/* to improve probably */
+input[type=text] {
+    width:150px;
+}
+
+input[type=password] {
+    width:150px;
+}
+
+select {
+    max-width:150px;
+}
+
+.ui-dialog { margin:0 auto; }
+
+#steps {
+    list-style: none;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 20px;
+    padding: 0px;
+}
+
+#steps li {
+    font-size: 24px;
+    float: left;
+    padding: 10px;
+    color: #b0b1b3;
+}
+
+#steps li span {
+    font-size: 11px;
+    display: block;
+}
+
+#steps li.current {
+    color: #05addc;
+}
+
+#steps li:focus {
+    color: #05addc;
+}
+
+#fast_onboarding_form .prev, .next {
+    background-color: #05ADDC;
+    padding: 5px 10px;
+    color: #333333 !important;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+#fast_onboarding_form .prev:hover, .next:hover {
+    background-color: #333333;
+    color: #05addc !important;
+    text-decoration: none;
+}
+
+#fast_onboarding_form .focused {
+    background-color: #333333;
+    color: #05addc !important;
+    text-decoration: none;
+}
+
+#fast_onboarding_form .prev {
+    float: left;
+}
+
+#fast_onboarding_form .next {
+    float: right;
+}
+
+#fast_onboarding_form .picked_number {
+    font-size: 24px;
+    padding: 10px;
+    color: #05addc;
+}
+
+#fast_onboarding_form .user_tab {
+    height: 175px;
+}
+
+#fast_onboarding_form .column {
+    float:left;
+    text-align: center;
+}
+
+#fast_onboarding_form .column:not(:last-child) {
+    border-right: 1px solid #b0b1b3;
+}
+
+#fast_onboarding_form .title_bar {
+    border-bottom: 1px solid #b0b1b3;
+    height: 22px;
+}
+
+#fast_onboarding_form .column.first {
+    width: 20px;
+    min-width: 20px;
+    padding: 5px;
+}
+#fast_onboarding_form .column.second {
+    width: 110px;
+    min-width: 110px;
+    padding: 5px;
+}
+#fast_onboarding_form .column.third {
+    width: 145px;
+    min-width: 145px;
+    padding: 5px;
+}
+#fast_onboarding_form .column.fourth {
+    width: 50px;
+    min-width: 50px;
+    padding: 5px;
+}
+
+#fast_onboarding_form .help_text {
+    padding: 10px;
+    text-align: center;
+}
+
+#fast_onboarding_form .extension_input {
+    width: 50px;
+}
+#fast_onboarding_form .first_name_input {
+    width: 100px;
+}
+#fast_onboarding_form .last_name_input {
+    width: 135px;
+}
