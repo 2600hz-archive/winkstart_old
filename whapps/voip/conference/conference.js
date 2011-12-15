@@ -52,7 +52,7 @@ winkstart.module('voip', 'conference', {
         validation: [
             { name: '#name',                  regex: /^.+$/ },
             { name: '#member_pins_string',    regex: /^[a-z0-9A-Z,\s]*$/ },
-            { name: '#member_numbers_string', regex: /^[0-9,\s]+$/ }
+            { name: '#member_numbers_string', regex: /^[0-9,\s]*$/ }
         ]
     },
     function(args) {
