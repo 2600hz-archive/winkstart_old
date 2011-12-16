@@ -13,3 +13,6 @@
 [submodule "whapps/connect"]
 	path = whapps/connect
 	url = git@github.com:2600hz/connect.git
+[submodule "whapps/indesign"]
+	path = whapps/indesign
+	url = git@github.com:2600hz/indesign.git
