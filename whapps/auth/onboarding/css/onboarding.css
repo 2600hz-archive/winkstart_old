@@ -1,28 +1,16 @@
-/* to improve probably */
-/*#onboarding-view input[type=text] {
-    width: 150px;
-}
-
-#onboarding-view input[type=password] {
-    width: 150px;
-}
-
-#onboarding-view select {
-    max-width: 150px;
-}
-*/
 #onboarding-view {
     text-align: center;
 }
 
 #onboarding-view .form_wrapper {
+    box-shadow: 1px 1px 10px #333333;
     background-color: #6C6C6C;
     border: 1px solid #363636;
     display: inline-block;
     margin-top: 50px;
     margin-bottom: 50px;
     text-align: left;
-    width: 390px;
+    width: 400px;
 }
 
 #onboarding-view .onboarding_title {
@@ -52,9 +40,12 @@
 #onboarding-view #steps li {
     font-size: 24px;
     float: left;
-    padding: 14px;
     color: #ffffff;
     text-shadow: 1px 1px #000000;
+    width: 100px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    text-align: center;
 }
 
 #onboarding-view #steps li span {
@@ -76,6 +67,10 @@
     padding-left: 15px;
 }
 
+#fast_onboarding_form legend {
+    color: #ffffff;
+}
+
 #fast_onboarding_form ul.controls li:first-child {
     border-top: 0;
 }
@@ -86,12 +81,15 @@
     color: #333333 !important;
     text-decoration: none;
     border-radius: 5px;
+    box-shadow: 2px 2px 2px #333333;
+    border: 1px solid #333333;
 }
 
 #fast_onboarding_form .prev:hover, .next:hover {
     background-color: #333333;
     color: #05addc !important;
     text-decoration: none;
+    box-shadow: 2px 2px 2px #333333;
 }
 
 #fast_onboarding_form .focused {
@@ -162,6 +160,7 @@
     padding: 10px;
     padding-bottom: 10px;
     text-align: center;
+    box-shadow: 1px 1px 1px #333333
 }
 
 #fast_onboarding_form .extension_input {
